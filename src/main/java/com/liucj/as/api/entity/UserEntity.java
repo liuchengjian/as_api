@@ -1,5 +1,8 @@
 package com.liucj.as.api.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)//不展示为空的字段
 public class UserEntity {
 
     /** 用户ID */

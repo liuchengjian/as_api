@@ -1,8 +1,10 @@
 package com.liucj.as.api.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.HashMap;
 import java.util.Map;
-
+@JsonInclude(JsonInclude.Include.NON_NULL)//不展示为空的字段
 public class ResponseEntity {
 
     private int code;

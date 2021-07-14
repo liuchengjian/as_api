@@ -7,6 +7,17 @@ spring:
     url: jdbc:mysql://localhost:3306/as_api?characterEncoding=utf8&useSSL=true
     username: root
     password: 123456789
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 6000
+#    password:
+    jedis:
+      pool:
+        max-active: 1000
+        max-wait: -1
+        max-idle: 10
+        min-idle: 5
 mybatis:
   mapper-locations: classpath:mybatis/*.xml #对应mapper映射xml文件所在路径
   type-aliases-package: com.liucj.as.api.entity #对应实体类路径
