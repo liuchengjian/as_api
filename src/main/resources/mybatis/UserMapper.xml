@@ -19,4 +19,10 @@
         WHERE
             user_name = #{userName}
     </select>
+    <select id="getUserList" resultType="com.liucj.as.api.entity.UserEntity">
+        SELECT
+            *
+        FROM
+            t_user
+    </select>
 </mapper>

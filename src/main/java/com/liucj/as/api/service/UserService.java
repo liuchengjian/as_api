@@ -17,10 +17,17 @@ public class UserService {
     }
 
     /**
-     * 查找用户列表
+     * 查找用户
      * @param userName
      */
+
     public List<UserEntity> findUser(String userName){
         return mUserMapper.findUser(userName);
+    }
+    /**
+     * 查找用户列表
+     */
+    public List<UserEntity> getUserList(){
+        return mUserMapper.getUserList();
     }
 }

@@ -9,6 +9,8 @@ import java.util.List;
 public interface UserMapper {
     //添加用户
     void  addUser(String userName,String passWord,String imoocId,String orderId,String createTime);
-    //查找用户列表
+    //查找某个
     List<UserEntity> findUser(String userName);
+    //查找用户列表
+    List<UserEntity> getUserList();
 }

@@ -23,4 +23,9 @@ mybatis:
   type-aliases-package: com.liucj.as.api.entity #对应实体类路径
   configuration:
     map-underscore-to-camel-case: true #数据库下划线是否转驼峰名
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
 

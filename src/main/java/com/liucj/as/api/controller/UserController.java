@@ -1,5 +1,7 @@
 package com.liucj.as.api.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.liucj.as.api.config.NeedLogin;
 import com.liucj.as.api.entity.ResponseCode;
 import com.liucj.as.api.entity.ResponseEntity;
@@ -82,5 +84,23 @@ public class UserController {
             UserRedisUtil.removeUser(redisTemplate, session);
         }
         return ResponseEntity.successMessage("退出登录成功");
+    }
+
+
+    @ApiOperation(value = "获取用户列表")
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public ResponseEntity getUserList(@RequestParam(value = "pageIndex", defaultValue = "1") @ApiParam("起始页") int pageIndex,
+                                      @RequestParam(value = "pageSize", required = true, defaultValue = "10")
+                                      @ApiParam("每页显示的数量") int pageSize) {
+        try {
+            PageHelper.startPage(pageIndex,pageSize);
+            List<UserEntity> userList = mUserService.getUserList();
+            PageInfo<UserEntity>pageInfo = new PageInfo<>(userList);
+            return ResponseEntity.success(pageInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.errorMessage("查找用户列表失败");
+        }
+
     }
 }
