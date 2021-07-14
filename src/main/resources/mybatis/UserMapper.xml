@@ -10,4 +10,13 @@
         #{orderId},
         #{createTime})
     </insert>
+
+    <select id="findUser" resultType="com.liucj.as.api.entity.UserEntity">
+        SELECT
+            *
+        FROM
+            t_user
+        WHERE
+            user_name = #{userName}
+    </select>
 </mapper>
