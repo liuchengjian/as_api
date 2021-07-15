@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 public class UserRedisUtil {
-    private static final String BOARDING_PASS = "boarding_pass";
+    private static final String BOARDING_PASS = "boarding-pass";
 
     /**
      * 添加用户到redis

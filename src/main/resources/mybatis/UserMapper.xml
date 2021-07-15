@@ -25,4 +25,11 @@
         FROM
             t_user
     </select>
+    <update id="updateUser">
+        UPDATE t_user
+            SET
+            forbid=#{forbid}
+            WHERE
+            uid=#{uid}
+    </update>
 </mapper>

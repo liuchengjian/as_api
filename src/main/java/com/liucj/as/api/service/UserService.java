@@ -30,4 +30,13 @@ public class UserService {
     public List<UserEntity> getUserList(){
         return mUserMapper.getUserList();
     }
+
+    /**
+     * 更新用户是否禁用
+     * @param uid
+     * @param forbid
+     */
+    public void updateUser(String uid,String forbid){
+        mUserMapper.updateUser(uid,forbid);
+    }
 }

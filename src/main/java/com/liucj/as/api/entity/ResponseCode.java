@@ -6,6 +6,7 @@ public enum ResponseCode {
     RC_ACCOUNT_INVALID(5001, "账号不存在"),
     RC_PWD_INVALID(5002, "密码错误"),
     RC_NEED_LOGIN(5003, "请先登录"),
+    RC_CONFIG_INVALID(80001, "请输入正确配置"),
     RC_USER_FORBID(6001, "用户被禁用"),
     ;
     private int code;

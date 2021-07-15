@@ -31,7 +31,9 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build()
                 .ignoredParameterTypes(ApiIgnore.class)
-                .tags(new Tag("Account","账号模块"));
+                .tags(new Tag("Account","账号模块"))
+                .tags(new Tag("Category","商品类别"))
+                .tags(new Tag("HiConfig","配置中心"));
     }
 
     private ApiInfo apiInfo(){

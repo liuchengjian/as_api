@@ -13,4 +13,6 @@ public interface UserMapper {
     List<UserEntity> findUser(String userName);
     //查找用户列表
     List<UserEntity> getUserList();
+
+    void updateUser(String uid,String forbid);
 }

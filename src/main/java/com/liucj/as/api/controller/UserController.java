@@ -7,6 +7,7 @@ import com.liucj.as.api.entity.ResponseCode;
 import com.liucj.as.api.entity.ResponseEntity;
 import com.liucj.as.api.entity.UserEntity;
 import com.liucj.as.api.service.UserService;
+import com.liucj.as.api.utils.DataUtil;
 import com.liucj.as.api.utils.UserRedisUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,10 +15,8 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.unit.DataUnit;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -70,7 +69,7 @@ public class UserController {
             mUserService.addUser(userName, bCryptPasswordEncoder.encode(password), imoocId, orderId);
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.errorMessage("moocID有相同，请检查");
+            return ResponseEntity.errorMessage("imoocID有相同，请检查");
         }
         return ResponseEntity.successMessage("注册成功");
     }
@@ -93,14 +92,27 @@ public class UserController {
                                       @RequestParam(value = "pageSize", required = true, defaultValue = "10")
                                       @ApiParam("每页显示的数量") int pageSize) {
         try {
-            PageHelper.startPage(pageIndex,pageSize);
+            PageHelper.startPage(pageIndex, pageSize);
             List<UserEntity> userList = mUserService.getUserList();
-            PageInfo<UserEntity>pageInfo = new PageInfo<>(userList);
-            return ResponseEntity.success(pageInfo);
+            return ResponseEntity.success(DataUtil.getPageData(userList));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.errorMessage("查找用户列表失败");
         }
 
+    }
+
+    @ApiOperation(value = "禁用或解禁用户")
+    @RequestMapping(value = "/{uid}", method = RequestMethod.PUT)
+    public ResponseEntity updateUser(@ApiParam("用户ID") @PathVariable String uid,
+                                     @RequestParam(value = "forbid")
+                                     @ApiParam("是否禁止") String forbid) {
+        try {
+            mUserService.updateUser(uid, forbid);
+            return ResponseEntity.successMessage("操作成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.errorMessage("操作失败");
+        }
     }
 }
