@@ -27,7 +27,7 @@ public class HiConfigFileUtil {
             if (!targetFile.getParentFile().exists()) {
                 targetFile.getParentFile().mkdirs();
             }
-            tempFile = File.createTempFile(fileName, ".temp", targetFile);
+            tempFile = File.createTempFile(fileName, ".temp", targetFile.getParentFile());
             fos = new FileOutputStream(tempFile);
             fos.write(content.getBytes());
             fos.flush();//刷新下

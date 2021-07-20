@@ -10,7 +10,7 @@ public class PropertyUtil {
      * @return
      */
     public static String getDocPath(String append) {
-        return new ApplicationHome(HiConfigFileUtil.class).getSource().getParentFile().getPath() + "/" + append;
+        return new ApplicationHome(HiConfigFileUtil.class).getSource().getParentFile().getParentFile().getPath() + "/" + append;
     }
 
     /**

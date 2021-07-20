@@ -1,9 +1,11 @@
 package com.liucj.as.api.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.liucj.as.api.hiconfig.HiConfigDelegate;
 
 import java.util.HashMap;
 import java.util.Map;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)//不展示为空的字段
 public class ResponseEntity {
 
@@ -19,6 +21,8 @@ public class ResponseEntity {
     public ResponseEntity(ResponseCode responseCode) {
         this.message = responseCode.msg();
         this.code = responseCode.code();
+        //探针绑定
+        HiConfigDelegate.bindConfig(extra);
     }
 
     public int getCode() {

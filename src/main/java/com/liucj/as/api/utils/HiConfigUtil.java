@@ -1,5 +1,8 @@
 package com.liucj.as.api.utils;
 
+import reactor.util.annotation.NonNull;
+import reactor.util.annotation.Nullable;
+
 import java.io.Closeable;
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -26,5 +29,10 @@ public class HiConfigUtil {
         if (file != null && file.exists()) {
             file.delete();
         }
+    }
+
+    public static boolean compareVersion(@NonNull String v1, @Nullable String v2){
+        if(v2 ==null) return true;
+        return v1.compareTo(v2)>0;
     }
 }
